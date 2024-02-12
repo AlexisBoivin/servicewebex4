@@ -43,7 +43,7 @@ exports.AfficherListePaginer = (req,res) => {
     if(!req.query.page){
         req.query.page = 1;
     }
-
+    // NOTE : Si on ne reçoit pas de type, on doit retourner tous les pokémons
     Pokemon.AfficherListePaginer(req.query.type)
 
     .then((pokemon) => {
@@ -54,7 +54,7 @@ exports.AfficherListePaginer = (req,res) => {
         });
         return;
     }
-    
+    // NOTE : Le format de la réponse est incorrect
     res.send(pokemon.slice(req.query.page * 25 - 25, req.query.page * 25));
         
     })
@@ -71,16 +71,19 @@ exports.AfficherListePaginer = (req,res) => {
 
 
 exports.ajouterPokemon = (req,res) => {
+    // NOTE : ici le reste du code devrait être dans la réponse de la promesse (then). Sinon le code va continuer à s'exécuter et n'attendra pas la réponse de la promesse.
+    // NOTE : Si trouverUnPokemon retourne quelque chose, ne pas ajouter le pokémon
     var lepokemon = Pokemon.trouverUnPokemon(req.params.id)
+    // NOTE : Tu devrais valider que les champs obligatoires sont présents
     Pokemon.ajouterPokemon(req.body.nom, req.body.type_primaire, req.body.type_secondaire, req.body.pv, req.body.attaque, req.body.defense)
     
     .then((pokemon) => {
     
     res.send({
         message : "Le pokemon"+ req.body.nom +"a été ajouté avec succès",
-
+        // TODO : tu ne devrais pas utiliser la variable lepokemon ici, tu peux reprendre ce que tu as dans le body plus le id créé.
         pokemon : {
-            id : pokemon.insertid,
+            id : pokemon.insertid, // TODO : Le insertid doit être dans le model (voir commentaire)
             nom: lepokemon.nom,
             type_primaire: lepokemon.type_primaire,
             type_secondaire: lepokemon.type_secondaire,
@@ -104,7 +107,8 @@ exports.ajouterPokemon = (req,res) => {
 };
 
 exports.modifierPokemon = (req,res) => {
-
+    // NOTE : Tu devrais valider que les champs obligatoires sont présents
+    // NOTE : Valide aussi que le poekmon existe
     Pokemon.modifierPokemon(req.params.id, req.body.nom, req.body.type_primaire, req.body.type_secondaire, req.body.pv, req.body.attaque, req.body.defense)
     
     .then(() => {
@@ -137,7 +141,7 @@ exports.modifierPokemon = (req,res) => {
 };
 
 exports.supprimerPokemon = (req,res) => {
-
+    // NOTE : Valide que le poekmon existe
     Pokemon.supprimerPokemon(req.params.id)
     
     .then(() => {
