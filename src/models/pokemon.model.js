@@ -55,6 +55,7 @@ Pokemon.ajouterPokemon = (nom, type_p, type_s, pv, att, def) => {
                 reject(erreur);
             }
             // Sinon je retourne le résultat sans faire de validation, c'est possible que le résultat soit vide
+            // TODO : Récupérer l'id du dernier enregistrement	ici
             resolve(resultat);
         });
     })
