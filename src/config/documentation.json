@@ -1,0 +1,160 @@
+{
+    "openapi": "3.1.0",
+    "info":{
+        "title": "API Pokemon",
+        "version": "1.0.0"
+    },
+    "server":
+        {
+            "url": "http://127.0.0.1:3000/",
+            "description": "Serveur de développement"
+        },
+        "paths" : {
+          "/api/pokemons/{id}":{
+            "get":{
+              "description": "Retourne les informations d'un pokémon en particulier ayant le bon id.",
+              "summary": "Détail d'un pokémon",
+              "tags": ["Pokemons"],
+              "paramters":[{
+                "name":"id",
+                "in":"path",
+                "description": "Identifiant unique propre à chaque pokémon.",
+                "required": true,
+                "schema":{
+                  "type":"integer"
+                }
+              }],
+              "responses":{
+                "200":{
+                  "description":"Succès.",
+                  "content": {
+                    "application/json":{
+                      "schema":{
+                        "type":"object",
+                        "properties":{
+                          "id":{
+                            "type": "integer"
+                          },
+                          "nom":{
+                            "type":"string"
+                          },
+                          "type_primaire":{
+                            "type":"string"
+                          },
+                          "type_secondaire":{
+                            "type":"string"
+                          },
+                          "pv":{
+                            "type": "integer"
+                          },
+                          "attaque":{
+                            "type":"integer"
+                          },
+                          "defense":{
+                            "type":"integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "404":{
+                  "description": "Erreur, le id n'existe pas.",
+                  "content":{
+                    "application/json":{
+                      "schema": {
+                        "type":"object",
+                        "properties":{
+                          "message":{
+                            "type": "string",
+                            "example":"Pokemon introuvable avec l'id {id}"
+                          }
+                        }
+                        
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "put":{
+              "description": "Modifie les informations d'un pokémon selon son id",
+              "summary": "Modification d'un pokémon",
+              "tags": ["Pokemons"],
+              "parameters":[{
+                 
+              }]
+            },
+            "delete":{
+
+            }
+          },
+       
+        
+           "/api/pokemons/liste" : {
+                "get": {
+                    "description": "Retourne la liste de touts les pokemons.",
+                    "summary": "Liste des pokemons",
+                    "tags": [ "Pokemons" ],
+                    "parameters":[{
+                      "name": "page",
+                      "in": "query",
+                      "description": "Si on utilise ce paramètre, les pokémons seront séparé en 25 pokémons par page. Le paramètre précise quelle page on souhaite consulter.",
+                      "required": false,
+                      "schema":{
+                        "type": "int",
+                        "exemple": "1"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "in": "query",
+                      "required": false,
+                      "schema": {
+                        "type": "string",
+                        "exemple": "grass"
+                      }
+                    }
+                   ],
+                    "responses": {
+                           "200": { 
+                            "description" : "Succès.",
+                            "content":{
+                              "application/json":{
+                                "schema":{
+                                  "type":"object",
+                                  "properties":{
+                                    "id":{
+                                      "type": "integer"
+                                    },
+                                    "nom":{
+                                      "type":"string"
+                                    },
+                                    "type_primaire":{
+                                      "type":"string"
+                                    },
+                                    "type_secondaire":{
+                                      "type":"string"
+                                    },
+                                    "pv":{
+                                      "type": "integer"
+                                    },
+                                    "attaque":{
+                                      "type":"integer"
+                                    },
+                                    "defense":{
+                                      "type":"integer"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            }
+                    }
+
+
+                }
+            }
+        }
+        
+}
