@@ -11,7 +11,7 @@ const authorization = require('./src/Middleware/authorization_cle_api');
 
 // Créer une application express
 const app = express();
-const PORT = 3000;
+const PORT = 5432;
 
 
 app.use(express.json())
