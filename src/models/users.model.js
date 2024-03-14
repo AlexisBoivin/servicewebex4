@@ -1,6 +1,6 @@
 const sql = require("../config/db.js");
 const { ajouterUser } = require("../controllers/users.controller.js");
-import {v4 as uuidv4} from 'uuid';
+// import {v4 as uuidv4} from 'uuid';
 const bcrypt = require('bcrypt');
 
 
