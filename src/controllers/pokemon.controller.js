@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // À ajuster selon la structure
 const Pokemon = require("../models/pokemon.model");
 
@@ -173,7 +172,7 @@ exports.supprimerPokemon = (req,res) => {
             message: "Erreur lors de la modification du Pokémon. "
         });
     });
-=======
+
 // À ajuster selon la structure
 const Pokemon = require("../models/pokemon.model");
 
@@ -348,5 +347,5 @@ exports.supprimerPokemon = (req,res) => {
             message: "Erreur lors de la modification du Pokémon. "
         });
     });
->>>>>>> fc383d06ec63893cbf50fb9a7da3d3f9fbe01f98
-};
+
+}};

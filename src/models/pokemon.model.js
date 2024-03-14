@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // À ajuster selon la structure
 const sql = require("../config/db_pg.js");
 
@@ -96,7 +95,7 @@ Pokemon.supprimerPokemon = (id) => {
 }
 
 module.exports = Pokemon;
-=======
+
 // À ajuster selon la structure
 const sql = require("../config/db_pg.js");
 
@@ -194,4 +193,3 @@ Pokemon.supprimerPokemon = (id) => {
 }
 
 module.exports = Pokemon;
->>>>>>> fc383d06ec63893cbf50fb9a7da3d3f9fbe01f98
